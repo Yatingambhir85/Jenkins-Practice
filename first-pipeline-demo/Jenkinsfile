@@ -17,10 +17,10 @@ pipeline {
     stage('Creation') {
 	steps {
 	  echo "Now creating the container"
-	  	script {
-			def dockerContainer = dockerImage.run('-p 8080:80 -itd')
-			// Storing the docker container ID
-			env.CONTAINER_ID = dockerContainer.id
+	     script {
+		def dockerContainer = dockerImage.run('-p 8080:80, '-i', '-t', '-d')
+		// Storing the docker container ID
+		env.CONTAINER_ID = dockerContainer.id
   }
 }
   }
