@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage("code") {
+    stage('code') {
       steps{
-	  git url: "https://github.com/Yatingambhir85/jenkins-demo-task.git", branch: main
+	  git url: "https://github.com/Yatingambhir85/jenkins-demo-task.git", branch: 'main'
    }    
     }
     stage('Build') {
