@@ -1,30 +1,23 @@
-pipeline {
-  agent any
-  stages {
-    stage('code') {
-      steps{
-	  git url: "https://github.com/Yatingambhir85/jenkins-demo-task.git", branch: 'main'
-   }    
-    }
-    stage('Build') {
-      steps {
-	echo "Building docker image"
-	    script {
-                    def dockerImage = docker.build('my-practice-image:latest', '-f first-pipeline-demo/Dockerfile .')
-                }
-      }
-    }
-    stage('Creation') {
-	steps {
-	  echo "Now creating the container"
-	     script {
-		def dockerContainer = dockerImage.run('-p 8080:80', '-i', '-t', '-d')
-		// Storing the docker container ID
-		env.CONTAINER_ID = dockerContainer.id
-  }
-}
-  }
-}
-}
+pipeline{
+	agent any
 
-
+	stages{
+		stage('Code Repo'){
+			steps{
+				git url: "https://github.com/Yatingambhir85/jenkins-demo-task.git", branch: 'main'
+			}
+		}
+		stage('Build'){
+		      steps{
+			      echo 'Building Image'
+			      sh "docker build -t my-practice-image -f firstpipelinedemo/Dockerfile ."
+		      }
+		}
+		stage('Deploy'){
+			steps{
+				echo 'Deploying the container'
+				sh "docker run -itd --name my-practice-container -p 8081:80 my-practice-image"
+			}
+		}
+	}
+}
