@@ -15,7 +15,7 @@ pipeline {
     stage('Creation') {
 	steps {
 	  echo "Now creating the container"
-	  sh 'docker run -itd --name my-container -p 8080:80 my-image'
+	  sh 'docker run -itd --name my-container -p 8081:80 my-image'
   }
 }
   }
