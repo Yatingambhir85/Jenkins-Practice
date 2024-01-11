@@ -11,7 +11,13 @@ pipeline {
 	echo "Building docker image"
         sh 'docker build -t my-image -f first-pipeline-demo/Dockerfile .'
       }
-    } 
+    }
+    stage('Creation') {
+	steps {
+	  echo "Now creating the container"
+	  sh 'docker run -itd --name my-container -p 8080:80 my-image'
+  }
+}
   }
 }
 
