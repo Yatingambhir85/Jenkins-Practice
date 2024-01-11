@@ -10,7 +10,7 @@ pipeline{
 		stage('Build'){
 		      steps{
 			      echo 'Building Image'
-			      sh "docker build -t my-practice-image -f firstpipelinedemo/Dockerfile ."
+			      sh "docker build -t my-practice-image -f first-pipeline-demo/Dockerfile ."
 		      }
 		}
 		stage('Deploy'){
