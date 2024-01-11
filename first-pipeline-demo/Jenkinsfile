@@ -9,15 +9,22 @@ pipeline {
     stage('Build') {
       steps {
 	echo "Building docker image"
-        sh 'docker build -t my-image -f first-pipeline-demo/Dockerfile .'
+	    script {
+                    def dockerImage = docker.build('my-practice-image:latest', '-f first-pipeline-demo/Dockerfile .')
+                }
       }
     }
     stage('Creation') {
 	steps {
 	  echo "Now creating the container"
-	  sh 'docker run -itd --name my-container -p 8081:80 my-image'
+	  	script {
+			def dockerContainer = dockerImage.run('-p 8080:80 -itd')
+			// Storing the docker container ID
+			env.CONTAINER_ID = dockerContainer.id
   }
 }
   }
 }
+}
+
 
