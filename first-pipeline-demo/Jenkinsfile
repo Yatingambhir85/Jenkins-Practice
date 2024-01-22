@@ -17,7 +17,7 @@ pipeline{
 			steps{
 				
 				// Get the running container ID based on the local image name
-                    		sh 'containerID=$(docker ps -q --filter "ancestor=my-practice-image"')
+                    		sh 'containerID=$(docker ps -q --filter "ancestor=my-practice-image")'
 				
                     		// If container is running, update it
 				
