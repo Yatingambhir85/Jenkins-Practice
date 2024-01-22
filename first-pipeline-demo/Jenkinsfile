@@ -15,15 +15,14 @@ pipeline{
 		}
 		stage('Deploy'){
 			steps{
-				
 				// Get the running container ID based on the local image name
-                    		sh "containerID=$(docker ps -q --filter "ancestor=my-practice-image")"
+                    		sh "containerId=$(docker ps -q --filter "ancestor=my-practice-image")"
 				script{
                     		// If container is running, update it
-                    		if (env.containerId) {
+                    		if (${containerId}) {
                      		   	echo "Updating the running container: ${containerId}"
                        		// Copy updated code to the running container (adjust the path accordingly)
-                        		sh "docker cp . ${env.containerId}:/usr/share/nginx/html"
+                        		sh "docker cp . ${containerId}:/usr/share/nginx/html"
                     		}	 
 				else {
                         	// If no container is running, start a new one
