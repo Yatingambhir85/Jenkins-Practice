@@ -23,11 +23,9 @@ pipeline{
 				// If no container is running, start a new one
                         		echo "Starting a new container"
                         		sh "docker run -itd --name my-practice-container -p 8081:80 my-practice-image"
-				// Get the running container ID based on the local image name
-                    		containerID = sh'$(docker ps -q --filter "status=running" --filter "ancestor=my-practice-image")'
 					echo "Removing the previous container"
-					sh 'docker stop ${containerID}'
-					sh 'docker rm ${containerID}'
+					sh 'docker stop my-practice-container'
+					sh 'docker rm my-practice-container'
                     		}
 				}
 			}
