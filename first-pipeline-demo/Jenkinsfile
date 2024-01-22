@@ -26,8 +26,8 @@ pipeline{
 				// Get the running container ID based on the local image name
                     		containerID = sh'$(docker ps -q --filter "status=running" --filter "ancestor=my-practice-image")'
 					echo "Removing the previous container"
-					sh "docker stop ${containerID}"
-					sh "docker rm ${containerID}"
+					sh 'docker stop ${containerID}'
+					sh 'docker rm ${containerID}'
                     		}
 				}
 			}
