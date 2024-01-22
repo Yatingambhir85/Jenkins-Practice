@@ -18,11 +18,9 @@ pipeline{
 				
 				// Get the running container ID based on the local image name
                     		sh 'containerID=$(docker ps -q --filter "ancestor=my-practice-image")'
-				
+				script{
                     		// If container is running, update it
-				
                     		if (env.containerId) {
-					
                      		   	echo "Updating the running container: ${containerId}"
                        		// Copy updated code to the running container (adjust the path accordingly)
                         		sh "docker cp . ${env.containerId}:/usr/share/nginx/html"
@@ -32,6 +30,7 @@ pipeline{
                         		echo "Starting a new container"
                         		sh "docker run -itd --name my-practice-container -p 8081:80 my-practice-image"
                     		}
+				}
 			}
 		}
 	}
