@@ -10,13 +10,13 @@ pipeline{
 		stage('Build'){
 		      steps{
 			      echo 'Building Image'
-			      sh "docker build -t my-practice-image -f first-pipeline-demo/Dockerfile ."
+			      sh 'docker build -t my-practice-image -f first-pipeline-demo/Dockerfile .'
 		      }
 		}
 		stage('Deploy'){
 			steps{
 				// Get the running container ID based on the local image name
-                    		sh "containerId=\$(docker ps -q --filter "ancestor=my-practice-image")"
+                    		sh 'containerId=\$(docker ps -q --filter "ancestor=my-practice-image")'
 				script{
                     		// If container is running, update it
                     		if (${containerId}) {
