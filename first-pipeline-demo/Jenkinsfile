@@ -24,7 +24,7 @@ pipeline{
                         		echo "Starting a new container"
                         		sh "docker run -itd --name my-practice-container -p 8081:80 my-practice-image"
 				// Get the running container ID based on the local image name
-                    		containerID = sh(script: 'docker ps -q --filter "status=running" --filter "ancestor=my-practice-image"')
+                    		containerID = sh'$(docker ps -q --filter "status=running" --filter "ancestor=my-practice-image")'
 					echo "Removing the previous container"
 					sh "docker stop ${containerID}"
 					sh "docker rm ${containerID}"
