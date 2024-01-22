@@ -25,8 +25,8 @@ pipeline{
                         		sh "docker run -itd --name my-practice-container -p 8081:80 my-practice-image"
 					sh 'containerID=\$(docker ps -aqf name="my-practice-container")'
 					echo "Removing the previous container"
-					sh 'docker stop $containerID'
-					sh 'docker rm $containerID'
+					sh 'docker stop ${containerID}'
+					sh 'docker rm ${containerID}'
 
                     		}
 				}
