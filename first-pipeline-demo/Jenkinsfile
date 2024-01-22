@@ -15,6 +15,7 @@ pipeline{
 		stage('Deploy'){
 			steps{
 				// Get the running container ID based on the local image name
+				def containerID
                     		sh 'containerId=\$(docker ps -q --filter "ancestor=my-practice-image")'
 				script{
                     		// If container is running, update it
